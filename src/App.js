@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 function App() {
   const [countries, setCountries] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const[error, setError]=useState(null);
 
   // Fetch countries data from the API
 
@@ -11,21 +12,22 @@ function App() {
         const url = "https://0b9f457a-c7f4-4a28-9f68-2fe10314cedd.mock.pstmn.io/crio";
         try{
            console.log("Fetching countries from API...");
-            const res = await axios.get(url);
-            if (!res.ok) {
-          throw new Error(`HTTP error! Status: ${res.status}`);
+            const response = await axios.get(url);
+             if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
         // Parse JSON response
-        const data = await res.json();
-            console.log("API call success. Data received:", data);
-            setCountries(data)
-        }catch(err){
-             console.error("API call failed with error:", err);
-        }
-        // console.log(data);
-    }
+        const data = await response.json();
+        console.log("API call success. Data received:", data);
 
+        setCountries(data); // Set state with API data
+        setError(null); // Reset error state in case of success
+      } catch (err) {
+        console.error("API call failed with error:", err.message);
+        setError(err.message); // Set error state
+      }
+    };
         useEffect(()=>{
         fetchCountries();
     }, []);
