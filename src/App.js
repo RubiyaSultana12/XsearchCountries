@@ -9,9 +9,9 @@ function App() {
     const API_URL = "https://0b9f457a-c7f4-4a28-9f68-2fe10314cedd.mock.pstmn.io/crio";
     fetch(API_URL)
       .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
+        if (response.status !== 200) {
+                throw new Error(`${response.status} ${response.statusText}`);
+            }
         return response.json();
       })
       .then((data) => {
@@ -19,7 +19,7 @@ function App() {
         setCountries(data);
       })
       .catch((error) => {
-        console.error("Error fetching data:", error); // Error handling
+       console.error('Fetch error:', error); // Error handling
       });
   }, []);
 
