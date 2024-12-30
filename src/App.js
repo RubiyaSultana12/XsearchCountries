@@ -5,23 +5,26 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("");
 
   // Fetch countries data from the API
-  useEffect(() => {
-    const API_URL = "https://0b9f457a-c7f4-4a28-9f68-2fe10314cedd.mock.pstmn.io/crio";
-    fetch(API_URL)
-      .then((response) => {
-        if (response.status !== 200) {
-                throw new Error(`${response.status} ${response.statusText}`);
+
+     const fetchCountries = async ()=>{
+        const url = "https://0b9f457a-c7f4-4a28-9f68-2fe10314cedd.mock.pstmn.io/crio";
+        try{
+            const res = await axios.get(url);
+            
+            if (res.status !== 200) {
+                throw new Error(`${res.status} ${res.statusText}`);
             }
-        return response.json();
-      })
-      .then((data) => {
-        console.log("Fetched data:", data); // Log data for debugging
-        setCountries(data);
-      })
-      .catch((error) => {
-       console.error('Fetch error:', error); // Error handling
-      });
-  }, []);
+            setData(res.data)
+        }catch(error){
+            console.error(error);
+        }
+        // console.log(data);
+    }
+
+        useEffect(()=>{
+        fetchCountries();
+    }, [])
+
 
   // Filter countries based on the search term
   const filteredCountries = countries.filter((country) =>
