@@ -37,10 +37,8 @@ function App() {
   // Filter countries based on the search term
   const filteredCountries = countries.filter((country) =>
     country.common.toLowerCase().includes(searchTerm.toLowerCase())
-    console.log("Filtered Countries for 'ind':", filteredCountries);
-
   );
-
+  
   return (
     <div>
       {/* Search Bar */}
@@ -65,7 +63,7 @@ function App() {
         {filteredCountries.length > 0 ? (
           filteredCountries.map((country) => (
             <div
-              key={country.cca3}
+              key={country}
               className="countryCard"
               style={{
                 width: "120px",
