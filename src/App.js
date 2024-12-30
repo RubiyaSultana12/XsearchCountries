@@ -6,7 +6,13 @@ function App() {
 
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
-      .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to fetch countries");
+      }
+      console.log("API call successful:", response.status);
+      return response.json();
+    })
       .then((data) => setCountries(data))
       .catch((error) => console.error("Error fetching data: ", error));
   }, []);
