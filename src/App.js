@@ -10,14 +10,19 @@ function App() {
      const fetchCountries = async ()=>{
         const url = "https://0b9f457a-c7f4-4a28-9f68-2fe10314cedd.mock.pstmn.io/crio";
         try{
+           console.log("Fetching countries from API...");
             const res = await axios.get(url);
-            
-            if (res.status !== 200) {
-                throw new Error(`${res.status} ${res.statusText}`);
-            }
-            setCountries(res.data)
+
+            if (!res.ok) {
+          throw new Error(`HTTP error! Status: ${res.status}`);
+        }
+
+        // Parse JSON response
+        const data = await res.json();
+            console.log("API call success. Data received:", data);
+            setCountries(data)
         }catch(error){
-            console.error(error);
+             console.error("API call failed with error:", error.message);
         }
         // console.log(data);
     }
@@ -54,9 +59,9 @@ function App() {
       {/* Display Country Cards */}
       <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
         {filteredCountries.length > 0 ? (
-          filteredCountries.map((country, index) => (
+          filteredCountries.map((country) => (
             <div
-              key={index}
+              key={country.cca3}
               className="countryCard"
               style={{
                 width: "120px",
@@ -73,9 +78,9 @@ function App() {
                 alt={`Flag of ${country.common}`}
                 style={{ width: "100px", height: "100px", borderRadius: "8px" }}
               />
-              <h4 style={{ marginTop: "10px", fontSize: "18px", color: "#333" }}>
+              <h2 style={{ marginTop: "10px", fontSize: "18px", color: "#333" }}>
                 {country.common}
-              </h4>
+              </h2>
             </div>
           ))
         ) : (
