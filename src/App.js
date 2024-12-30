@@ -15,7 +15,7 @@ function App() {
             if (res.status !== 200) {
                 throw new Error(`${res.status} ${res.statusText}`);
             }
-            setData(res.data)
+            setCountries(res.data)
         }catch(error){
             console.error(error);
         }
