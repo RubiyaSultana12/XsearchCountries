@@ -16,14 +16,13 @@ function App() {
           "https://0b9f457a-c7f4-4a28-9f68-2fe10314cedd.mock.pstmn.io/crio"
         );
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
+        if (response.status == 200) {
+          console.log("API call success. Data received:");
+
         }
 
         // Parse JSON response
         const data = await response.json();
-        console.log("API call success. Data received:", data);
-
         setCountries(data); // Set state with API data
         setError(null); // Reset error state in case of success
       } catch (err) {
