@@ -12,7 +12,6 @@ function App() {
         try{
            console.log("Fetching countries from API...");
             const res = await axios.get(url);
-
             if (!res.ok) {
           throw new Error(`HTTP error! Status: ${res.status}`);
         }
@@ -21,8 +20,8 @@ function App() {
         const data = await res.json();
             console.log("API call success. Data received:", data);
             setCountries(data)
-        }catch(error){
-             console.error("API call failed with error:", error.message);
+        }catch(err){
+             console.error("API call failed with error:", err);
         }
         // console.log(data);
     }
