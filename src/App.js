@@ -81,7 +81,7 @@ function App() {
                 style={{ width: "100px", height: "100px", borderRadius: "8px" }}
               />
               <h2 style={{ marginTop: "10px", fontSize: "18px", color: "#333" }}>
-                {country.common}
+                {country.name.common}
               </h2>
             </div>
           ))
