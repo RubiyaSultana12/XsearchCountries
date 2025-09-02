@@ -13,7 +13,7 @@ function App() {
 
         // Make API request
         const response = await fetch(
-          "https://restcountries.com/v3.1/all"
+          "https://restcountries.com/v3.1/all?fields=cca3,name,flags"
         );
 
         if (response.status == 200) {
