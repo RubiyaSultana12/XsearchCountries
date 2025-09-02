@@ -36,7 +36,7 @@ function App() {
 
   // Filter countries based on the search term
   const filteredCountries = countries.filter((country) =>
-    country.common.toLowerCase().includes(searchTerm.toLowerCase())
+    country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
   );
   
   return (
@@ -76,7 +76,7 @@ function App() {
               }}
             >
               <img
-                src={country.png}
+                src={country.flags.png}
                 alt={`Flag of ${country.common}`}
                 style={{ width: "100px", height: "100px", borderRadius: "8px" }}
               />
