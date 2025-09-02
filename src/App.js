@@ -13,7 +13,7 @@ function App() {
 
         // Make API request
         const response = await fetch(
-          "https://0b9f457a-c7f4-4a28-9f68-2fe10314cedd.mock.pstmn.io/crio"
+          "https://restcountries.com/v3.1/all"
         );
 
         if (response.status == 200) {
