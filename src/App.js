@@ -77,7 +77,7 @@ function App() {
             >
               <img
                 src={country.flags.png}
-                alt={`Flag of ${country.common}`}
+                alt={`Flag of ${country.name.common}`}
                 style={{ width: "100px", height: "100px", borderRadius: "8px" }}
               />
               <h2 style={{ marginTop: "10px", fontSize: "18px", color: "#333" }}>
